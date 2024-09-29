@@ -19,7 +19,7 @@ public class ProductImpl implements ProductDao {
     @Override
     public boolean insert(Product product) {
         // TODO Auto-generated method stub
-        String sql = "INSERT INTO PRODUCTS(ID, NAME, DESCRIPTION, THUMBNAIL, PRICE, QUANTITY, VIEW, CATEGORY_ID) VALUES(NULL, ?, ?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO PRODUCTS(ID, NAME, DESCRIPTION, THUMBNAIL, PRICE, QUANTITY, VIEW, CATEGORY_ID) VALUES(NULL, ?, ?, ?, ?, ?, 0, ?)";
         try {
             PreparedStatement stmt = con.prepareStatement(sql);
             stmt.setString(1, product.getName());
@@ -27,8 +27,7 @@ public class ProductImpl implements ProductDao {
             stmt.setString(3, product.getThumbnail());
             stmt.setDouble(4, product.getPrice());
             stmt.setInt(5, product.getQuantity());
-            stmt.setInt(6, product.getView());
-            stmt.setInt(7, product.getCategoryId());
+            stmt.setInt(6, product.getCategoryId());
             stmt.execute();
         } catch (SQLException e) {
             // TODO Auto-generated catch block
@@ -40,7 +39,7 @@ public class ProductImpl implements ProductDao {
     @Override
     public boolean update(Product product) {
         // TODO Auto-generated method stub
-        String sql = "UPDATE PRODUCTS SET name = ?, description = ?, thumbnail = ?, price = ?, quantity = ?, view = ?, category_id = ?, created_at = ? WHERE id = ?";
+        String sql = "UPDATE PRODUCTS SET name = ?, description = ?, thumbnail = ?, price = ?, quantity = ?, category_id = ? WHERE id = ?";
         try {
             PreparedStatement stmt = con.prepareStatement(sql);
             stmt.setString(1, product.getName());
@@ -48,10 +47,8 @@ public class ProductImpl implements ProductDao {
             stmt.setString(3, product.getThumbnail());
             stmt.setDouble(4, product.getPrice());
             stmt.setInt(5, product.getQuantity());
-            stmt.setInt(6, product.getView());
-            stmt.setInt(7, product.getCategoryId());
-            stmt.setTimestamp(8, product.getCreatedAt());
-            stmt.setInt(9, product.getId());
+            stmt.setInt(6, product.getCategoryId());
+            stmt.setInt(7, product.getId());
             return stmt.execute();
         } catch (SQLException e) {
             // TODO Auto-generated catch block
@@ -312,5 +309,36 @@ public class ProductImpl implements ProductDao {
         }
         return prodList;
     }
+
+    @Override
+    public List<Product> findAllWithCategory() {
+        List<Product> productList = new ArrayList<>();
+        String sql = "SELECT products.*, categories.name AS category_name FROM products "
+                + "LEFT JOIN categories ON products.category_id = categories.id";
+        try {
+            PreparedStatement stmt = con.prepareStatement(sql);
+            ResultSet rs = stmt.executeQuery();
+            while (rs.next()) {
+                int id = rs.getInt("id");
+                String name = rs.getString("name");
+                String description = rs.getString("description");
+                String thumbnail = rs.getString("thumbnail");
+                Double price = rs.getDouble("price");
+                int quantity = rs.getInt("quantity");
+                int view = rs.getInt("view");
+                int categoryId = rs.getInt("category_id");
+                Timestamp createdAt = rs.getTimestamp("created_at");
+                String categoryName = rs.getString("category_name");
+
+                Product product = new Product(id, name, description, thumbnail, price, quantity, categoryId, view, createdAt);
+                product.setCategoryName(categoryName);
+                productList.add(product);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return productList;
+    }
+
 
 }

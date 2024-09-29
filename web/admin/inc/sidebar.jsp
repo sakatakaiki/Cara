@@ -25,22 +25,22 @@
             <div class="nav-item dropdown">
                 <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="fa fa-laptop me-2"></i>Users</a>
                 <div class="dropdown-menu bg-transparent border-0">
-                    <a href="button.html" class="dropdown-item">All</a>
-                    <a href="typography.html" class="dropdown-item">Add</a>
+                    <a href="IndexUserServlet" class="dropdown-item">All</a>
+                    <a href="CreateUserServlet" class="dropdown-item">Add</a>
                 </div>
             </div>
             <div class="nav-item dropdown">
                 <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="fa fa-th me-2"></i>Categories</a>
                 <div class="dropdown-menu bg-transparent border-0">
-                    <a href="button.html" class="dropdown-item">All</a>
-                    <a href="typography.html" class="dropdown-item">Add</a>
+                    <a href="IndexCategoryServlet" class="dropdown-item">All</a>
+                    <a href="CreateCategoryServlet" class="dropdown-item">Add</a>
                 </div>
             </div>
             <div class="nav-item dropdown">
                 <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="fa fa-table me-2"></i>Products</a>
                 <div class="dropdown-menu bg-transparent border-0">
-                    <a href="button.html" class="dropdown-item">All</a>
-                    <a href="typography.html" class="dropdown-item">Add</a>
+                    <a href="IndexProductServlet" class="dropdown-item">All</a>
+                    <a href="CreateProductServlet" class="dropdown-item">Add</a>
                 </div>
             </div>
             <div class="nav-item dropdown">

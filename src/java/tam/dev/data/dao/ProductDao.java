@@ -17,4 +17,5 @@ public interface ProductDao {
     public List<Product> news(int limit);
     public List<Product> related(int related, int categoryId);
     public List<Product> getProducts(int from, int amount);
+    public List<Product> findAllWithCategory();
 }
