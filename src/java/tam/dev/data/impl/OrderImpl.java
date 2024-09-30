@@ -36,14 +36,11 @@ public class OrderImpl implements OrderDao{
 	@Override
 	public boolean update(Order order) {
 		// TODO Auto-generated method stub
-        String sql = "UPDATE ORDERS SET code = ?, status = ?, user_id = ?, created_at = ? WHERE id = ?";
+        String sql = "UPDATE ORDERS SET status = ? WHERE id = ?";
         try {
             PreparedStatement stmt = con.prepareStatement(sql);
-            stmt.setString(1, order.getCode());
-            stmt.setString(2, order.getStatus());
-            stmt.setInt(3, order.getUserId());
-            stmt.setTimestamp(4, order.getCreatedAt());
-            stmt.setInt(5, order.getId());
+            stmt.setString(1, order.getStatus());
+            stmt.setInt(2, order.getId());
             return stmt.execute();
         } catch (SQLException e) {
             // TODO Auto-generated catch block

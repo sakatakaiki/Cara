@@ -55,22 +55,31 @@
                     <div class="row g-4">
                         <div class="col-12">
                             <div class="bg-light rounded h-100 p-4">
-                                <h6 class="mb-4">Edit Category</h6>
-                                <span class="error">${error}</span>
-                                <c:remove var="error" scope="session" />
-                                <form action="EditCategoryServlet" method="post">
-                                    <input type="hidden" name="categoryId" value="${category.id}"/>
-                                    <div class="mb-3">
-                                        <label for="exampleInputEmail1" class="form-label">Category name</label>
-                                        <input name="name" value="${category.name}" type="text" class="form-control" id="exampleInputEmail1"
-                                               aria-describedby="emailHelp">
-                                    </div>
-                                    <div class="mb-3">
-                                        <label for="exampleInputPassword1" class="form-label">Description</label>
-                                        <input name="description" value="${category.description}" type="text" class="form-control" id="exampleInputPassword1">
-                                    </div>
-                                    <button type="submit" class="btn btn-primary">Submit</button>
-                                </form>
+                                <h6 class="mb-4">Detail of order <i>${order.code}</i></h6>
+                                <div class="table-responsive">
+                                    <table class="table">
+                                        <thead>
+                                            <tr>
+                                                <th scope="col">#</th>
+                                                <th scope="col">Product</th>
+                                                <th scope="col">Price</th>
+                                                <th scope="col">Quantity</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <c:set var="i" value="0"/>
+                                            <c:forEach var="orderItem" items="${orderItemList}">
+                                                <c:set var="i" value="${i+1}"/>
+                                                <tr>
+                                                    <th scope="row">${i}</th>
+                                                    <td>${orderItem.product.name}</td>
+                                                    <td>${orderItem.price}</td>
+                                                    <td>${orderItem.quantity}</td>
+                                                </tr>
+                                            </c:forEach>
+                                        </tbody>
+                                    </table>
+                                </div>
                             </div>
                         </div>
                     </div>

@@ -123,7 +123,7 @@
         <script src="./assets/admin/lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>
 
 
-        <script src="js/main.js"></script>
+        <script src="./assets/admin/js/main.js"></script>
     </body>
 
 </html>

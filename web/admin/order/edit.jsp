@@ -55,19 +55,21 @@
                     <div class="row g-4">
                         <div class="col-12">
                             <div class="bg-light rounded h-100 p-4">
-                                <h6 class="mb-4">Edit Category</h6>
-                                <span class="error">${error}</span>
+                                <h6 class="mb-4">Edit Order</h6>
+                                <span class="error text-danger">${error}</span>
                                 <c:remove var="error" scope="session" />
-                                <form action="EditCategoryServlet" method="post">
-                                    <input type="hidden" name="categoryId" value="${category.id}"/>
+                                <form action="EditOrderServlet" method="post">
+                                    <input type="hidden" name="orderId" value="${order.id}"/>
                                     <div class="mb-3">
-                                        <label for="exampleInputEmail1" class="form-label">Category name</label>
-                                        <input name="name" value="${category.name}" type="text" class="form-control" id="exampleInputEmail1"
-                                               aria-describedby="emailHelp">
+                                        <label for="exampleInputEmail1" class="form-label">Code:</label>
+                                        <span>${order.code}</span>
                                     </div>
                                     <div class="mb-3">
-                                        <label for="exampleInputPassword1" class="form-label">Description</label>
-                                        <input name="description" value="${category.description}" type="text" class="form-control" id="exampleInputPassword1">
+                                        <label for="exampleInputPassword1" class="form-label">Status</label>
+                                        <select name="status" class="form-control">
+                                            <option <c:if test="${order.status == 'pending'}">selected</c:if> value="pending">pending</option>
+                                            <option <c:if test="${order.status == 'finished'}">selected</c:if> value="finished">finished</option>
+                                        </select>
                                     </div>
                                     <button type="submit" class="btn btn-primary">Submit</button>
                                 </form>
